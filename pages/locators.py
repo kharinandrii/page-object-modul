@@ -4,3 +4,8 @@ class MainPageLocators():
     LOGIN_LINK = (By.XPATH, "//a[@id='login_link']")
     LOGIN_FORM = (By.XPATH, "//form[@id = 'login_form']")
     REGISTER_FORM = (By.XPATH, "//form[@id = 'register_form']")
+    BUTTON_ADD_TO_BASKET = (By.XPATH, "//button[contains(@class,'btn-add-to-basket')]")
+    MESSAGE_ADD_IN_BASKET = (By.XPATH, "//div[@id='messages']/div[1]/div")
+    BASKET_MESSAGE = (By.XPATH, "//div[@id='messages']/div[2]/div")
+    BASKET_COST = (By.XPATH,"//div[@id='messages']/div[3]/div//strong")
+    PRODUCT_PRICE = (By.XPATH, "//div[contains(@class, 'product_main')]/p[@class = 'price_color']")
