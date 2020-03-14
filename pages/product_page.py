@@ -29,22 +29,30 @@ class ProductPage(BasePage):
 
 
     def check_first_message(self):
-         first_message = self.browser.find_element(*MainPageLocators.MESSAGE_ADD_IN_BASKET).text
-         TEXT_MESSAGE1 = "The shellcoder's handbook был добавлен в вашу корзину."
-         assertTrue(first_message.startswith(TEXT_MESSAGE1), f"{first_message} don't start with {TEXT_MESSAGE1}")
+         first_message = self.browser.find_element(*MainPageLocators.MESSAGE_ADD_IN_BASKET).text.strip()
+         book_name = self.browser.find_element(*MainPageLocators.BOOK_NAME).text
+         TEXT_MESSAGE1 = book_name + " has been added to your basket."
+         print(first_message)
+         print(TEXT_MESSAGE1)
+         # time.sleep(30000)
+         assertTrue(first_message == TEXT_MESSAGE1, f"{first_message} don't equals {TEXT_MESSAGE1}")
 
 
     def check_second_message(self):
          second_message = self.browser.find_element(*MainPageLocators.BASKET_MESSAGE).text.strip()
-         # time.sleep(3600)
+         time.sleep(3600)
          print(second_message)
-         TEXT_MESSAGE1 = "Ваша корзина удовлетворяет условиям предложения Deferred benefit offer."
+         TEXT_MESSAGE1 = " Deferred benefit offer."
          print(TEXT_MESSAGE1)
+         time.sleep(36)
          assertTrue(second_message.endswith(TEXT_MESSAGE1), f"{second_message} don't finish with {TEXT_MESSAGE1}")
 
 
     def check_cost(self):
-        cost_message = self.browser.find_element(*MainPageLocators.BASKET_COST).text
-        check_product_price = self.browser.find_element(*MainPageLocators.PRODUCT_PRICE).text
+        cost_message = self.browser.find_element(*MainPageLocators.BASKET_COST).text.strip()
+        check_product_price = "Your basket total is now " + self.browser.find_element(*MainPageLocators.PRODUCT_PRICE).text
+        print(cost_message)
+        print(check_product_price)
+        # time.sleep(3000)
         assertTrue(cost_message == check_product_price, f"{cost_message} don't equals {check_product_price}")
 
