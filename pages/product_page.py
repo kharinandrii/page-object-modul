@@ -56,3 +56,9 @@ class ProductPage(BasePage):
         # time.sleep(3000)
         assertTrue(cost_message == check_product_price, f"{cost_message} don't equals {check_product_price}")
 
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*MainPageLocators.MESSAGE_ADD_IN_BASKET), \
+            "Success message is presented, but should not be"
+
+    def message_is_disappeared(self):
+        assert self.is_disappeared(*MainPageLocators.MESSAGE_ADD_IN_BASKET)

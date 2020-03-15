@@ -21,3 +21,26 @@ def test_guest_can_add_product_to_basket(browser, link1 ):
     product_page.check_first_message()
     # product_page.check_second_message()
     product_page.check_cost()
+
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    # link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019."
+    browser.get(link1)
+    product_page = ProductPage(browser, link1)
+    product_page.add_to_basket()
+    product_page.should_not_be_success_message()
+
+def test_guest_cant_see_success_message(browser):
+    link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    # link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019."
+    browser.get(link1)
+    product_page = ProductPage(browser, link1)
+    product_page.should_not_be_success_message()
+
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    # link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019."
+    browser.get(link1)
+    product_page = ProductPage(browser, link1)
+    product_page.add_to_basket()
+    product_page.message_is_disappeared()
