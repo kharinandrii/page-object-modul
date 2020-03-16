@@ -1,10 +1,10 @@
-from selenium.webdriver.common.by import By
-from wheel.signatures import assertTrue
+
+
 
 from .base_page import BasePage
-from .locators import MainPageLocators
+
 
 class MainPage(BasePage):
-    class MainPage(BasePage):
-        def __init__(self, *args, **kwargs):
-            super(MainPage, self).__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        super(MainPage, self).__init__(*args, **kwargs)
+

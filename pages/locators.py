@@ -10,3 +10,5 @@ class MainPageLocators():
     BASKET_COST = (By.XPATH,"//div[@id='messages']/div[3]/div/p[1]")
     PRODUCT_PRICE = (By.XPATH, "//div[contains(@class, 'product_main')]/p[@class = 'price_color']")
     BOOK_NAME = (By.XPATH, "//div[@id = 'content_inner']//h1")
+    BASKET_BUTTON = (By.XPATH, "//span[@class = 'btn-group']//a[contains(@class , 'btn btn-default')]")
+    EMPTY_BASKET_TEXT =(By.XPATH, "//div[@id = 'content_inner']/p")
