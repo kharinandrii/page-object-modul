@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from .locators import MainPageLocators
+from .basket_page_locators import BasketPageLocators
 from selenium.common.exceptions import  NoAlertPresentException
 import math
 import time
@@ -29,36 +30,26 @@ class ProductPage(BasePage):
 
 
     def check_first_message(self):
-         first_message = self.browser.find_element(*MainPageLocators.MESSAGE_ADD_IN_BASKET).text.strip()
+         first_message = self.browser.find_element(*BasketPageLocators.MESSAGE_ADD_IN_BASKET).text.strip()
          book_name = self.browser.find_element(*MainPageLocators.BOOK_NAME).text
          TEXT_MESSAGE1 = book_name + " has been added to your basket."
-         print(first_message)
-         print(TEXT_MESSAGE1)
-         # time.sleep(30000)
          assertTrue(first_message == TEXT_MESSAGE1, f"{first_message} don't equals {TEXT_MESSAGE1}")
 
 
     def check_second_message(self):
-         second_message = self.browser.find_element(*MainPageLocators.BASKET_MESSAGE).text.strip()
-         time.sleep(3600)
-         print(second_message)
+         second_message = self.browser.find_element(*BasketPageLocators.BASKET_MESSAGE).text.strip()
          TEXT_MESSAGE1 = " Deferred benefit offer."
-         print(TEXT_MESSAGE1)
-         time.sleep(36)
          assertTrue(second_message.endswith(TEXT_MESSAGE1), f"{second_message} don't finish with {TEXT_MESSAGE1}")
 
 
     def check_cost(self):
-        cost_message = self.browser.find_element(*MainPageLocators.BASKET_COST).text.strip()
+        cost_message = self.browser.find_element(*BasketPageLocators.BASKET_COST).text.strip()
         check_product_price = "Your basket total is now " + self.browser.find_element(*MainPageLocators.PRODUCT_PRICE).text
-        print(cost_message)
-        print(check_product_price)
-        # time.sleep(3000)
         assertTrue(cost_message == check_product_price, f"{cost_message} don't equals {check_product_price}")
 
     def should_not_be_success_message(self):
-        assert self.is_not_element_present(*MainPageLocators.MESSAGE_ADD_IN_BASKET), \
+        assert self.is_not_element_present(*BasketPageLocators.MESSAGE_ADD_IN_BASKET), \
             "Success message is presented, but should not be"
 
     def message_is_disappeared(self):
-        assert self.is_disappeared(*MainPageLocators.MESSAGE_ADD_IN_BASKET)
+        assert self.is_disappeared(*BasketPageLocators.MESSAGE_ADD_IN_BASKET)
