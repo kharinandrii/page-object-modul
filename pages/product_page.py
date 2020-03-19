@@ -1,6 +1,6 @@
 from .base_page import BasePage
 from .locators import MainPageLocators
-from .basket_page_locators import BasketPageLocators
+from .locators import BasketPageLocators
 from selenium.common.exceptions import  NoAlertPresentException
 import math
 import time

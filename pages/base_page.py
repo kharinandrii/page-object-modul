@@ -2,7 +2,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
-from .login_page_locators  import LoginPageLocators
+from .locators  import LoginPageLocators
 from .locators import MainPageLocators
 from wheel.signatures import assertTrue
 
