@@ -8,7 +8,7 @@ class MainPageLocators:
     EMPTY_BASKET_TEXT =(By.XPATH, "//div[@id = 'content_inner']/p")
 
 class BasketPageLocators:
-    MESSAGE_ADD_IN_BASKET = (By.XPATH, "//div[@id='messages']/div[1]/div")
+    MESSAGE_ADD_IN_BASKET = (By.XPATH, "//div[@class = 'page_inner']/div[@id='messages']/div[1]/div")
     BASKET_MESSAGE = (By.XPATH, "//div[@id='messages']/div[2]/div")
     BASKET_COST = (By.XPATH,"//div[@id='messages']/div[3]/div/p[1]")
     PRODUCT_PRICE = (By.XPATH, "//div[contains(@class, 'product_main')]/p[@class = 'price_color']")
