@@ -5,6 +5,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from .locators  import LoginPageLocators
 from .locators import MainPageLocators
 from wheel.signatures import assertTrue
+from .locators import BasePageLocators
+
 
 
 class BasePage():
@@ -51,3 +53,7 @@ class BasePage():
 
     def go_to_basket(self):
         self.browser.find_element(*MainPageLocators.BASKET_BUTTON).click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"

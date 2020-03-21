@@ -1,3 +1,5 @@
+import time
+
 from wheel.signatures import assertTrue
 from faker import Faker
 from .base_page import BasePage
@@ -28,7 +30,7 @@ class LoginPage(BasePage):
         check_register_form = self.is_element_present(*LoginPageLocators.REGISTER_FORM)
         assertTrue(check_register_form, f"{check_register_form} don't find on login page")
 
-    def register_new_user(self, email=f.name, password="12345678Jo"):
+    def register_new_user(self, email=str(time.time()) + "@fakemail.org", password="12345678Jo"):
         self.fill_email_field(email)
         self.fill_pass1_field(password)
         self.fill_pass2_field(password)

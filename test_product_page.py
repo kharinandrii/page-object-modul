@@ -1,6 +1,7 @@
 import pytest
 from pages.product_page import ProductPage
 from pages.login_page import LoginPage
+from pages.base_page import BasePage
 
 
 @pytest.mark.parametrize('link1', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -62,19 +63,29 @@ def test_guest_can_go_to_login_page_from_product_page(browser):
 
 
 class TestUserAddToBasketFromProductPage:
-    # link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019."
-    def test_user_cant_see_success_message(browser):
+
+
+    @pytest.fixture(scope="function", autouse=True)
+    def setUp(self, browser):
         link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019."
-        browser.get(link1)
         login_page = LoginPage(browser, link1)
-        product_page = ProductPage(browser, link1)
+        login_page.open()
+        login_page.go_to_login_page()
         login_page.register_new_user()
+        page = BasePage(browser, link1)
+        page.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019."
+        product_page = ProductPage(browser, link1)
         product_page.should_not_be_success_message()
 
-    def test_user_can_add_product_to_basket(browser, link1):
+    def test_user_can_add_product_to_basket(self, browser):
+        link1 = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019."
         browser.get(link1)
         product_page = ProductPage(browser, link1)
         product_page.add_to_basket()
         product_page.solve_quiz_and_get_code()
         product_page.check_first_message()
         product_page.check_cost()
+# TODO разобраться почему не работают тесты, отдебажить и разобраться с линком
