@@ -4,7 +4,7 @@ from .locators import BasketPageLocators
 from selenium.common.exceptions import  NoAlertPresentException
 import math
 import time
-from wheel.signatures import assertTrue
+# from wheel.signatures import assertTrue
 
 
 class ProductPage(BasePage):
@@ -33,19 +33,19 @@ class ProductPage(BasePage):
          first_message = self.browser.find_element(*BasketPageLocators.MESSAGE_ADD_IN_BASKET).text.strip()
          book_name = self.browser.find_element(*MainPageLocators.BOOK_NAME).text
          TEXT_MESSAGE1 = book_name + " has been added to your basket."
-         assertTrue(first_message == TEXT_MESSAGE1, f"{first_message} don't equals {TEXT_MESSAGE1}")
+         assert (first_message == TEXT_MESSAGE1, f"{first_message} don't equals {TEXT_MESSAGE1}")
 
 
     def check_second_message(self):
          second_message = self.browser.find_element(*BasketPageLocators.BASKET_MESSAGE).text.strip()
          TEXT_MESSAGE1 = " Deferred benefit offer."
-         assertTrue(second_message.endswith(TEXT_MESSAGE1), f"{second_message} don't finish with {TEXT_MESSAGE1}")
+         assert (second_message.endswith(TEXT_MESSAGE1), f"{second_message} don't finish with {TEXT_MESSAGE1}")
 
 
     def check_cost(self):
         cost_message = self.browser.find_element(*BasketPageLocators.BASKET_COST).text.strip()
         check_product_price = "Your basket total is now " + self.browser.find_element(*MainPageLocators.PRODUCT_PRICE).text
-        assertTrue(cost_message == check_product_price, f"{cost_message} don't equals {check_product_price}")
+        assert (cost_message == check_product_price, f"{cost_message} don't equals {check_product_price}")
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*BasketPageLocators.MESSAGE_ADD_IN_BASKET), \
